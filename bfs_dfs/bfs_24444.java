@@ -6,7 +6,6 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
@@ -40,11 +39,16 @@ public class bfs_24444 {
             graph.get(to).add(from);
         }
 
-        for (int i = 0; graph.size() < e; i++) {
-            Collections.sort(graph.get(i));
+        for (ArrayList<Integer> integers : graph) {
+            Collections.sort(integers);
         }
 
         bfs(r);
+
+        for (int i = 1; i < visited.length; i++) {
+            sb.append(visited[i]).append("\n");
+        }
+        System.out.println(sb);
 
     }
 

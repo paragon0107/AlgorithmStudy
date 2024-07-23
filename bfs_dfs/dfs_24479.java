@@ -33,13 +33,12 @@ public class dfs_24479 {
             st = new StringTokenizer(br.readLine());
             int from = Integer.parseInt(st.nextToken());
             int to = Integer.parseInt(st.nextToken());
-
             graph.get(from).add(to);
             graph.get(to).add(from);
         }
 
-        for (int i = 0; graph.size() < e; i++) {
-            Collections.sort(graph.get(i));
+        for (ArrayList<Integer> integers : graph) {
+            Collections.sort(integers);
         }
 
         count = 1;
@@ -54,7 +53,6 @@ public class dfs_24479 {
 
     public static void dfs(int v) {
         visit[v] = count;
-
         for (int i = 0; i < graph.get(v).size(); i++) {
             int n = graph.get(v).get(i);
 
