@@ -13,7 +13,7 @@ public class dfs_24479 {
     static StringBuilder sb = new StringBuilder();
 
     static ArrayList<ArrayList<Integer>> graph = new ArrayList<>();
-    static int[] check;
+    static int[] visit;
     static int count;
 
     public static void main(String[] args) throws IOException {
@@ -23,7 +23,7 @@ public class dfs_24479 {
         int e = Integer.parseInt(st.nextToken());
         int s = Integer.parseInt(st.nextToken());
 
-        check = new int[v + 1];
+        visit = new int[v + 1];
 
         for (int i = 0; i < v + 1; i++) {
             graph.add(new ArrayList<>());
@@ -46,19 +46,19 @@ public class dfs_24479 {
 
         dfs(s);
 
-        for (int i = 1; i < check.length; i++) {
-            sb.append(check[i]).append("\n");
+        for (int i = 1; i < visit.length; i++) {
+            sb.append(visit[i]).append("\n");
         }
         System.out.println(sb);
     }
 
     public static void dfs(int v) {
-        check[v] = count;
+        visit[v] = count;
 
         for (int i = 0; i < graph.get(v).size(); i++) {
             int n = graph.get(v).get(i);
 
-            if (check[n] == 0) {
+            if (visit[n] == 0) {
                 count++;
                 dfs(n);
             }
