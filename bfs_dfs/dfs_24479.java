@@ -29,7 +29,7 @@ public class dfs_24479 {
             graph.add(new ArrayList<>());
         }
 
-        for (int i = 0; i < v + 1; i++) {
+        for (int i = 0; i < e; i++) {
             st = new StringTokenizer(br.readLine());
             int from = Integer.parseInt(st.nextToken());
             int to = Integer.parseInt(st.nextToken());
@@ -38,24 +38,27 @@ public class dfs_24479 {
             graph.get(to).add(from);
         }
 
-        for (int i = 0; i < e; i++) {
+        for (int i = 0; graph.size() < e; i++) {
             Collections.sort(graph.get(i));
         }
 
-        count =1;
+        count = 1;
 
         dfs(s);
 
+        for (int i = 1; i < check.length; i++) {
+            sb.append(check[i]).append("\n");
+        }
+        System.out.println(sb);
     }
 
+    public static void dfs(int v) {
+        check[v] = count;
 
-    public static void dfs(int vertex){
-        check[vertex] = count;
+        for (int i = 0; i < graph.get(v).size(); i++) {
+            int n = graph.get(v).get(i);
 
-        for (int i =0;i<graph.get(vertex).size();i++){
-            int n = graph.get(vertex).get(i);
-
-            if (check[n] == 0){
+            if (check[n] == 0) {
                 count++;
                 dfs(n);
             }
