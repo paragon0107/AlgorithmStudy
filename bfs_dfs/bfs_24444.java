@@ -64,7 +64,7 @@ public class bfs_24444 {
 
             for (int i = 0; i < graph.get(a).size(); i++) {
                 int n = graph.get(a).get(i);
-                if(visited[n] ==0){
+                if(visited[n] == 0){
                     q.offer(n);
                     visited[n] = count++;
                 }
