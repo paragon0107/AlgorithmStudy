@@ -1,3 +1,5 @@
+
+//package math;
 //
 //import java.io.BufferedReader;
 //import java.io.IOException;
@@ -20,6 +22,7 @@
 //
 //        while(nums){
 //            nums.add(nums%10);
+//            nums.append(nums%10);
 //            nums/=10;
 //        }
 //        if(nums.size()==2){
