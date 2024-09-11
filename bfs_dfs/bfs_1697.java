@@ -1,56 +1,59 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.StringTokenizer;
+import java.util.*;
+import java.io.*;
 
-public class bfs_1697 {
+class bfs_1697 {
+    static int N, K;
+    static int[] time = new int[100001];
+    static int minTime = 987654321;
+    static int count = 0;
 
-    static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-    static StringTokenizer st;
-    static int n;
-    static int m;
-    static int[] visited;
-    static int[] graph;
-    static Queue<Integer> q;
-    static int count;
+    public static void main(String[] args) throws Exception {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st;
 
-    public static void main(String[] args) throws IOException {
         st = new StringTokenizer(br.readLine());
-        n = Integer.parseInt(st.nextToken());
-        m = Integer.parseInt(st.nextToken());
+        N = Integer.parseInt(st.nextToken());
+        K = Integer.parseInt(st.nextToken());
 
-        visited = new int[100001];
+        if (N >= K) {
+            System.out.println((N-K) + "\n1");
+            return;
+        }
 
-        bfs(n);
-        System.out.println(visited[m] - 1);
+        bfs();
+
+        System.out.println(minTime + "\n" + count);
     }
 
-    public static void bfs(int n) {
-        q = new LinkedList<>();
-        visited[n] = 1;
+    static void bfs() {
+        Queue<Integer> q = new LinkedList<Integer>();
 
-        q.offer(n);
+        q.add(N);
+        time[N] = 1;
 
         while (!q.isEmpty()) {
-            int a = q.poll();
+            int now = q.poll();
 
-            int z = a + 1;
-            int x = a - 1;
-            int c = a * 2;
-            check(z, a);
-            check(x, a);
-            check(c, a);
-            count++;
-        }
-    }
+            if (minTime < time[now]) return;
 
-    public static void check(int z, int a) {
-        if (z >= 0 && z <= 100000) {
-            if(visited[z] == 0){
-                q.offer(z);
-                visited[z] = visited[a] + 1;
+            for (int i=0; i<3; i++) {
+                int next;
+
+                if (i == 0)         next = now + 1;
+                else if (i == 1)    next = now - 1;
+                else                next = now * 2;
+
+                if (next < 0 || next > 100000) continue;
+
+                if (next == K) {
+                    minTime = time[now];
+                    count++;
+                }
+
+                if (time[next] == 0 || time[next] == time[now] + 1) {
+                    q.add(next);
+                    time[next] = time[now] + 1;
+                }
             }
         }
     }
