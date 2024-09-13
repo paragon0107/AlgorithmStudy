@@ -1,11 +1,9 @@
-package backtracking;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-public class back_15651 {
+public class back_15652 {
     public static int[] arr;
     public static boolean[] visit;
     public static StringBuilder sb = new StringBuilder();
@@ -20,25 +18,27 @@ public class back_15651 {
         n = Integer.parseInt(st.nextToken());
         m = Integer.parseInt(st.nextToken());
 
-        arr = new int[m];
-        visit = new boolean[n];
-        dfs(0);
+        arr = new int[m + 1];
+        visit = new boolean[m + 1];
+        dfs(1);
         System.out.println(sb);
 
     }
 
     public static void dfs(int depth) {
-        if (depth == m) {
-            for (int val : arr) {
-                sb.append(val).append(' ');
+        if (depth == m+1) {
+            for (int i = 1; i <= m; i++) {
+                sb.append(arr[i]).append(' ');
             }
             sb.append('\n');
             return;
         }
 
         for (int i = 1; i <= n; i++) {
-            arr[depth] = i;
-            dfs(depth + 1);
+            if (arr[depth - 1] <= i) {
+                arr[depth] = i;
+                dfs(depth + 1);
+            }
         }
     }
 }
