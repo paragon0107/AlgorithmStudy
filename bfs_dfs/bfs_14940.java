@@ -6,7 +6,8 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
-public class bfs_14940 {
+public class
+bfs_14940 {
     static int[][] graph;
     static boolean[][] visited;
     static int[][] result;
