@@ -7,7 +7,7 @@ public class bs_12015 {
     static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     static StringTokenizer st;
 
-    public static void main(String[] args) throws IOException {
+        public static void main(String[] args) throws IOException {
         int n = Integer.parseInt(br.readLine());
 
         int[] arr = new int[n];
